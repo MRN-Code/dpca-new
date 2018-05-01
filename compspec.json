@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "name": "decentralized PCA demo",
+    "id": "dpca_test",
+    "version": "v1.0.0",
+    "repository": "",
+    "description": "a test for decentralized PCA"
+  },
+  "computation": {
+    "type": "docker",
+    "dockerImage": "dpca_test",
+    "command": [
+      "python",
+      "\/computation\/local.py"
+    ],
+    "remote": {
+      "type": "docker",
+      "dockerImage": "dpca_test",
+      "command": [
+        "python",
+        "\/computation\/remote.py"
+      ]
+    },
+    "input": {
+      "samples": {
+        "type": "array"
+      }
+    },
+    "output": {
+      "en": {
+        "type": "number"
+      }
+    }
+  }
+}
