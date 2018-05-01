@@ -15,18 +15,21 @@ def listRecursive(d, key):
 def remote_1(args):
 
     input_list = args["input"]
-#    myval = [input_list[site]["output_val"] for site in input_list]
+    
+    # combine the partial square roots from the local sites
     sums = 0
     for site in input_list:
         Ps = np.array(input_list[site]["psr"])
         sums = sums + np.dot(Ps, Ps.T)
         
     sums = sums / len(input_list)
-
+    
+    # compute SVD
     u, s, v = np.linalg.svd(sums)
     K = 2
     u = u[:, :K]
     
+    # compute captured energy in the top-K subspace
     cov = np.array(input_list[site]["cov"])
     en = np.trace(np.dot(np.dot(u.T, cov), u))
 
